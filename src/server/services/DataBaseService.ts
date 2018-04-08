@@ -36,4 +36,9 @@ export class DataBaseService {
       .insertOne(user));
   }
 
+  public static getUser = (name) => {
+    return DataBaseService.connect((db) => db.collection(config.db.collections.users)
+      .findOne({nm: name}));
+  }
+
 }

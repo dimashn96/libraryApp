@@ -21,4 +21,8 @@ export class HttpService {
     return this.http.put('../api/user', user);
   }
 
+  auth(user: User) {
+    return this.http.post('../api/user', user);
+  }
+
 }

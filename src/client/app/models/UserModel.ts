@@ -5,5 +5,5 @@ export class User {
   name: string;
   firstName: string;
   lastName: string;
-  newPassword: string;
+  password: string;
 }

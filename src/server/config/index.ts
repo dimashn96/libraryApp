@@ -15,6 +15,9 @@ export const config = {
       books: 'books',
       users: 'users'
     }
+  },
+  auth: {
+    secret: 'TTTTOOOOPPPPSSSSEEEECCCCRRRREEEETTTT'
   }
 
 };
