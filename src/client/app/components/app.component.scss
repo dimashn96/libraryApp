@@ -1,0 +1,28 @@
+.main-container {
+  padding: 50px;
+
+  & h1 {
+    padding: 50px;
+    color: red;
+    text-align: center;
+    font-size: 45px;
+  }
+
+  & ul {
+    width: 510px;
+    margin: 0 auto;
+    padding: 35px;
+    font-size: 30px;
+
+    & li {
+      display: inline-block;
+      padding: 20px;
+
+      & a {
+        &.active {
+          color: green;
+        }
+      }
+    }
+  }
+}
