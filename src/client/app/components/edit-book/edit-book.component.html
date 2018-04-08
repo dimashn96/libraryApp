@@ -1,0 +1,33 @@
+<div *ngIf="book">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input name="name" id="name" [(ngModel)]="book.name"/>
+  </div>
+  <div class="form-group">
+    <label for="author">Author</label>
+    <input name="author" id="author" [(ngModel)]="book.author"/>
+  </div>
+  <div class="form-group">
+    <label for="genre">Genre</label>
+    <input name="genre" id="genre" [(ngModel)]="book.genre"/>
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <input name="description" id="description" [(ngModel)]="book.description"/>
+  </div>
+  <div class="form-group">
+    <label for="link">Link</label>
+    <input name="link" id="link" [(ngModel)]="book.link"/>
+  </div>
+  <div class="form-group">
+    <label for="image">Image</label>
+    <input name="image" id="image" [(ngModel)]="book.image"/>
+  </div>
+  <div class="form-group">
+    <button (click)="submit(book)">Отправить</button>
+  </div>
+  <div class="form-group">
+    <div class="form-item" *ngIf="done">Complete</div>
+    <div class="form-item" *ngIf="message">{{message}}</div>
+  </div>
+</div>

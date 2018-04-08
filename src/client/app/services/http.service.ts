@@ -14,6 +14,14 @@ export class HttpService {
     return this.http.put('../api/book', book);
   }
 
+  updateBook(book: Book) {
+    return this.http.post('../api/book', book);
+  }
+
+  getBook(bookId) {
+    return this.http.get('../api/book/' + bookId);
+  }
+
   getBooks() {
     return this.http.get('../api/books');
   }

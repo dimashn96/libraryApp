@@ -36,6 +36,29 @@ router.put('/book', (req, res) => {
     });
 });
 
+// Update book
+router.post('/book', (req, res) => {
+  const book = new Book(req.body);
+  DataBaseService.updateBook(book.toRawData(), book._id)
+    .then((result) => {
+      sendResponse(res);
+    })
+    .catch((err) => {
+      sendError(res, err);
+    });
+});
+
+// Get book
+router.get('/book/:bookId', (req, res) => {
+  DataBaseService.getBook(req.params.bookId)
+    .then((book) => {
+      sendResponse(res, undefined, undefined, new Book(book, true));
+    })
+    .catch((err) => {
+      sendError(res, err);
+    });
+});
+
 // Get books
 router.get('/books', (req, res) => {
   DataBaseService.getBooks()
