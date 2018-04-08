@@ -13,6 +13,7 @@ import { ShowBooksComponent } from '../components/show-books/show-books.componen
 import { AddBookComponent } from '../components/add-book/add-book.component';
 import { AddUserComponent} from '../components/add-user/add-user.component';
 import { AuthComponent} from '../components/auth/auth.component';
+import { AccountComponent} from '../components/account/account.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,6 +21,7 @@ const appRoutes: Routes = [
   { path: 'show-books', component: ShowBooksComponent },
   { path: 'add-user', component: AddUserComponent },
   { path: 'auth', component: AuthComponent },
+  { path: 'account', component: AccountComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
@@ -31,7 +33,8 @@ const appRoutes: Routes = [
     ShowBooksComponent,
     AddBookComponent,
     AddUserComponent,
-    AuthComponent
+    AuthComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
