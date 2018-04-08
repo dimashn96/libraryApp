@@ -26,6 +26,10 @@ export class HttpService {
     return this.http.get('../api/books');
   }
 
+  findBooks(keyword) {
+    return this.http.get('../api/books/' + keyword);
+  }
+
   addUser(user: User) {
     return this.http.put('../api/user', user);
   }

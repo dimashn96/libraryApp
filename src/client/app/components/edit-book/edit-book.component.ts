@@ -3,6 +3,7 @@ import {Book} from '../../models/BookModel';
 import {HttpService} from '../../services/http.service';
 import {ActivatedRoute} from '@angular/router';
 import {Response} from '../../models/ResponseModel';
+import {ObjectID} from 'mongodb';
 
 @Component({
   selector: 'app-edit-book',
@@ -14,7 +15,7 @@ export class EditBookComponent implements OnInit {
   book: Book;
   message: string;
   done = false;
-  private bookId: string;
+  private bookId: ObjectID;
 
   constructor(private httpService: HttpService, private activatedRoute: ActivatedRoute) {
   }

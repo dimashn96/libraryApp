@@ -15,6 +15,7 @@ import {AddUserComponent} from '../components/add-user/add-user.component';
 import {AuthComponent} from '../components/auth/auth.component';
 import {AccountComponent} from '../components/account/account.component';
 import {EditBookComponent} from '../components/edit-book/edit-book.component';
+import {FindBookComponent} from '../components/find-book/find-book.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
   {path: 'auth', component: AuthComponent},
   {path: 'account', component: AccountComponent},
   {path: 'edit-book/:book-id', component: EditBookComponent},
+  {path: 'find-book', component: FindBookComponent},
   {path: '**', component: NotFoundComponent}
 ];
 
@@ -37,7 +39,8 @@ const appRoutes: Routes = [
     AddUserComponent,
     AuthComponent,
     AccountComponent,
-    EditBookComponent
+    EditBookComponent,
+    FindBookComponent
   ],
   imports: [
     BrowserModule,
