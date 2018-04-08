@@ -12,17 +12,13 @@ export class HttpService {
   addBook(book: Book) {
     return this.http.put('../api/book', book);
   }
-  
+
   getBooks() {
     return this.http.get('../api/books');
   }
 
   addUser(user: User) {
     return this.http.put('../api/user', user);
-  }
-
-  getPdf(user: User) {
-    return this.http.get('../api/user/' + user.firstName);
   }
 
 }

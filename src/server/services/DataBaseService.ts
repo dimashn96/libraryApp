@@ -31,14 +31,9 @@ export class DataBaseService {
       .toArray());
   }
 
-  // public static getUser = (firstName) => {
-  //   return DataBaseService.connect((db) => db.collection(config.db.collections.users)
-  //     .findOne({frstNm: firstName}));
-  // }
-  //
-  // public static addPdf = (firstName, pdfB) => {
-  //   return DataBaseService.connect((db) => db.collection(config.db.collections.users)
-  //     .updateOne({frstNm: firstName}, {$set: {pdf: pdfB}}));
-  // }
+  public static addUser = (user) => {
+    return DataBaseService.connect((db) => db.collection(config.db.collections.users)
+      .insertOne(user));
+  }
 
 }

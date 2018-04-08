@@ -3,35 +3,40 @@ import { ObjectID } from 'mongodb';
 export class User {
 
   public _id: ObjectID;
+  public name: string;
   public firstName: string;
   public lastName: string;
-  public image: string;
-  public pdf: string;
+  public passH: string;
+  public role: string;
 
   constructor(user?: any, fromRawData?: boolean) {
     if (!user) {
       return;
     } else {
       this._id = user._id;
-      this.pdf = user.pdf;
       if (fromRawData) {
+        this.name = user.nm;
         this.firstName = user.frstNm;
         this.lastName = user.lstNm;
-        this.image = user.img;
+        this.passH = user.pssH;
+        this.role = user.rl;
       } else {
+        this.name = user.name;
         this.firstName = user.firstName;
         this.lastName = user.lastName;
-        this.image = user.image;
+        this.passH = user.passH;
+        this.role = user.role;
       }
     }
   }
 
   public toRawData() {
     const rawUser: any = {};
+    rawUser.nm = this.name;
     rawUser.frstNm = this.firstName;
     rawUser.lstNm = this.lastName;
-    rawUser.img = this.image;
-    rawUser.pdf = this.pdf;
+    rawUser.pssH = this.passH;
+    rawUser.rl = this.role;
     return rawUser;
   }
 

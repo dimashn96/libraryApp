@@ -11,11 +11,13 @@ import { NotFoundComponent } from '../components/not-found/not-found.component';
 import { HomeComponent } from '../components/home/home.component';
 import { ShowBooksComponent } from '../components/show-books/show-books.component';
 import { AddBookComponent } from '../components/add-book/add-book.component';
+import { AddUserComponent} from '../components/add-user/add-user.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'add-book', component: AddBookComponent },
   { path: 'show-books', component: ShowBooksComponent },
+  { path: 'add-user', component: AddUserComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
@@ -25,7 +27,8 @@ const appRoutes: Routes = [
     NotFoundComponent,
     HomeComponent,
     ShowBooksComponent,
-    AddBookComponent
+    AddBookComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,

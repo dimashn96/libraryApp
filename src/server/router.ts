@@ -1,7 +1,10 @@
 import * as express from 'express';
+const bcrypt = require('bcrypt');
+const jwt = require('json-web-token');
 import { DataBaseService } from './services/DataBaseService';
 import { Response } from './models/ResponseModel';
 import { Book } from './models/BookModel';
+import { User } from './models/UserModel';
 
 // Router
 const router = express.Router();
@@ -43,6 +46,24 @@ router.get('/books', (req, res) => {
     });
 });
 
-
+// Add user
+router.put('/user', (req, res) => {
+  const user = new User(req.body);
+  user.role = 'user';
+  bcrypt.hash(req.body.newPassword, 10, function (err, passH) {
+    if (err) {
+      sendError(res, err);
+    } else {
+      user.passH = passH;
+      DataBaseService.addUser(user.toRawData())
+        .then((result) => {
+          sendResponse(res, undefined, undefined, result);
+        })
+        .catch((err) => {
+          sendError(res, err);
+        });
+    }
+  });
+});
 
 module.exports = router;

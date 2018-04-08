@@ -12,7 +12,8 @@ export const config = {
     name: 'library',
     uri: 'mongodb://localhost:27017/library',
     collections: {
-      books: 'books'
+      books: 'books',
+      users: 'users'
     }
   }
 
