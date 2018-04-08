@@ -1,11 +1,12 @@
 import * as express from 'express';
+import {config} from './config';
+import {DataBaseService} from './services/DataBaseService';
+import {Response} from './models/ResponseModel';
+import {Book} from './models/BookModel';
+import {User} from './models/UserModel';
+
 const bcrypt = require('bcrypt');
 const jwt = require('json-web-token');
-import { config } from './config';
-import { DataBaseService } from './services/DataBaseService';
-import { Response } from './models/ResponseModel';
-import { Book } from './models/BookModel';
-import { User } from './models/UserModel';
 
 // Router
 const router = express.Router();
@@ -72,20 +73,45 @@ router.post('/user', (req, res) => {
   const userReq = req.body;
   DataBaseService.getUser(userReq.name)
     .then((result) => {
-      const user = new User(result, true);
-      bcrypt.compare(userReq.password, user.passH, function (err, valid) {
-        if (err) {
-          return sendError(res, err);
-        }
-        if (!valid) {
-          return sendError(res, err, 401);
-        }
-        jwt.encode(config.auth.secret, {name: user.name}, function (err, token) {
-          sendResponse(res, undefined, undefined, token);
+      if (!result) {
+        sendError(res, undefined, 401, 'User not found');
+      } else {
+        const user = new User(result, true);
+        bcrypt.compare(userReq.password, user.passH, function (err, valid) {
+          if (err) {
+            return sendError(res, err);
+          }
+          if (!valid) {
+            return sendError(res, err, 401, 'Invalid password');
+          }
+          jwt.encode(config.auth.secret, {name: user.name}, function (err, token) {
+            sendResponse(res, undefined, undefined, token);
+          });
         });
-      });
+      }
     })
     .catch((err) => sendError(res, err));
+});
+
+// Get user
+router.get('/user', (req, res) => {
+  if (!req.headers['x-auth']) {
+    return sendError(res, undefined, 401);
+  } else {
+    jwt.decode(config.auth.secret, req.headers['x-auth'], function (err, decodedPayload) {
+      if (err) {
+        return sendError(res, undefined, 401);
+      } else {
+        DataBaseService.getUser(decodedPayload.name)
+          .then((user: User) => {
+            return sendResponse(res, undefined, undefined, new User(user, true));
+          })
+          .catch((err) => {
+            return sendError(res, err, 401, 'User not found');
+          });
+      }
+    });
+  }
 });
 
 module.exports = router;

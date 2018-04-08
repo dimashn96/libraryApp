@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../services/http.service';
-import { Book } from '../../models/BookModel';
-import { Response } from '../../models/ResponseModel';
+import {Component, OnInit} from '@angular/core';
+import {HttpService} from '../../services/http.service';
+import {Response} from '../../models/ResponseModel';
+import {User} from '../../models/UserModel';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-account',
@@ -10,16 +11,30 @@ import { Response } from '../../models/ResponseModel';
 })
 export class AccountComponent implements OnInit {
 
-  books: [Book];
+  user: User;
+  token = window.localStorage.token;
 
-  constructor(private httpService: HttpService) {}
+  constructor(private httpService: HttpService, private router: Router) {}
 
   ngOnInit() {
-    this.httpService.getBooks().subscribe((res: Response) => {
-        this.books = res.data;
-      },
-      error => console.log(error)
-    );
+    if (this.token && typeof this.token === 'string') {
+      this.httpService.getUser(this.token).subscribe((res: Response) => {
+          if (res.status === 200 && res.data) {
+            this.user = res.data;
+          }
+        },
+        error => console.log(error)
+      );
+    } else {
+      this.router.navigate(['auth']);
+    }
+  }
+
+  exit() {
+    if (this.token && typeof this.token === 'string') {
+      localStorage.removeItem('token');
+      this.router.navigate(['']);
+    }
   }
 
 }

@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { User } from '../models/UserModel';
-import { Book } from '../models/BookModel';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {User} from '../models/UserModel';
+import {Book} from '../models/BookModel';
 
 @Injectable()
 
 export class HttpService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   addBook(book: Book) {
     return this.http.put('../api/book', book);
@@ -23,6 +24,10 @@ export class HttpService {
 
   auth(user: User) {
     return this.http.post('../api/user', user);
+  }
+
+  getUser(token: string) {
+    return this.http.get('../api/user', {headers: {'x-auth': token}});
   }
 
 }
