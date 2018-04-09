@@ -71,6 +71,20 @@ router.get('/books', (req, res) => {
     });
 });
 
+// Find books
+router.get('/books/:keyword', (req, res) => {
+  DataBaseService.findBooks(req.params.keyword)
+    .then((books: [any]) => {
+      const data = books
+        .filter((book) => !(Object.keys(book).length === 0))
+        .map((book) => new Book(book, true));
+      sendResponse(res, undefined, undefined, data);
+    })
+    .catch((err) => {
+      sendError(res, err);
+    });
+});
+
 // Add user
 router.put('/user', (req, res) => {
   const user = new User(req.body);

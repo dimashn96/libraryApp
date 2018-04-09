@@ -20,7 +20,7 @@ export class FindBookComponent {
   }
 
   submit() {
-    this.httpService.findBooks(this.keyword).subscribe((res: Response) => {
+    this.httpService.findBooks(this.keyword.toLowerCase()).subscribe((res: Response) => {
         this.books = res.data;
         this.done = true;
         if (typeof res.data === 'string') {

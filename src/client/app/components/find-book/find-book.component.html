@@ -9,3 +9,12 @@
   <div class="form-item" *ngIf="done">Complete</div>
   <div class="form-item" *ngIf="message">{{message}}</div>
 </div>
+<div *ngIf="books">
+  <ul>
+    <li *ngFor="let book of books">
+      <p>{{book.name}}</p>
+      <p>{{book.author}}</p>
+      <p>{{book.genre}}</p>
+    </li>
+  </ul>
+</div>
