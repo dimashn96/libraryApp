@@ -9,4 +9,5 @@ export class Book {
   link: string;
   image: string;
   likes: number;
+  show: boolean;
 }

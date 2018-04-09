@@ -6,7 +6,7 @@
     <div *ngIf="book.show">
       <p>Author: {{book.author}}</p>
       <p>Description: {{book.description}}</p>
-      <p class="like" (click)="like(book)">Likes: {{book.likes}}</p>
+      <p>Likes: {{book.likes}}</p>
       <a [href]="book.link">Go to source</a>
     </div>
   </li>

@@ -2,7 +2,8 @@ import {Component} from '@angular/core';
 import {User} from '../../models/UserModel';
 import {Response} from '../../models/ResponseModel';
 import {HttpService} from '../../services/http.service';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
+import {AppComponent} from '../app.component';
 
 @Component({
   selector: 'app-auth',
@@ -15,15 +16,16 @@ export class AuthComponent {
   message: string;
   done = false;
 
-  constructor(private httpService: HttpService, private router: Router) {
+  constructor(private httpService: HttpService, private router: Router, private mainComp: AppComponent) {
   }
 
   submit() {
     this.httpService.auth(this.user).subscribe((res: Response) => {
         if (res.status === 200) {
           this.done = true;
-          if (res.data && typeof res.data === 'string') {
-            window.localStorage.setItem('token', res.data);
+          if (res.data.token && typeof res.data.token === 'string') {
+            window.localStorage.setItem('token', res.data.token);
+            this.mainComp.checkAuth(res.data.admin);
             this.router.navigate(['account']);
           }
         }

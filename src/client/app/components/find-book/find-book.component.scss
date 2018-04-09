@@ -1,0 +1,35 @@
+.form {
+  width: 300px;
+  margin: 50px auto;
+  & .form-group {
+    padding: 5px;
+    clear: both;
+    text-align: right;
+    & label {
+      float: left;
+    }
+  }
+}
+
+
+ul {
+  & li {
+    padding: 30px;
+    vertical-align: top;
+    text-align: justify;
+    & p {
+      padding: 10px;
+      &.like {
+        cursor: pointer;
+      }
+    }
+    & img {
+      width: 20%;
+      padding: 10px;
+      text-align: center;
+    }
+    & a {
+      padding: 10px;
+    }
+  }
+}

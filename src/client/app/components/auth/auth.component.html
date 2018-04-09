@@ -1,15 +1,17 @@
-<div class="form-group">
-  <label for="name">Name</label>
-  <input name="name" id="name" [(ngModel)]="user.name" />
-</div>
-<div class="form-group">
-  <label for="password">Password</label>
-  <input name="password" id="password" [(ngModel)]="user.password" />
-</div>
-<div class="form-group">
-  <button (click)="submit(book)">Отправить</button>
-</div>
-<div class="form-group">
-  <div class="form-item" *ngIf="done">Complete</div>
-  <div class="form-item" *ngIf="message">{{message}}</div>
+<div class="form">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input name="name" id="name" [(ngModel)]="user.name"/>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input name="password" id="password" [(ngModel)]="user.password"/>
+  </div>
+  <div class="form-group">
+    <button (click)="submit(book)">Отправить</button>
+  </div>
+  <div class="form-group">
+    <div class="form-item" *ngIf="done">Complete</div>
+    <div class="form-item" *ngIf="message">{{message}}</div>
+  </div>
 </div>

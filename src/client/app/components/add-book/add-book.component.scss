@@ -1,0 +1,12 @@
+.form {
+  width: 300px;
+  margin: 50px auto;
+  & .form-group {
+    padding: 5px;
+    clear: both;
+    text-align: right;
+    & label {
+      float: left;
+    }
+  }
+}

@@ -42,4 +42,12 @@ export class HttpService {
     return this.http.get('../api/user', {headers: {'x-auth': token}});
   }
 
+  updateUserLikes(userId, likes) {
+    return this.http.post('../api/user-likes', {id: userId, likes: likes});
+  }
+
+  updateBookLikes(bookId, likes) {
+    return this.http.post('../api/book-likes', {id: bookId, likes: likes});
+  }
+
 }

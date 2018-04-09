@@ -1,29 +1,36 @@
 <div class="main-container">
-  <h1>Library</h1>
-  <ul>
-    <li>
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Main page</a>
-    </li>
+  <ul *ngIf="admin" class="admin-menu">
     <li>
       <a routerLink="/add-book" routerLinkActive="active">Add book</a>
     </li>
-    <li>
-      <a routerLink="/edit-book" routerLinkActive="active">Edit book</a>
+  </ul>
+  <ul class="small-menu">
+    <li *ngIf="!auth">
+      <a routerLink="/add-user" routerLinkActive="active">Registration</a>
     </li>
+    <li *ngIf="!auth">
+      <a routerLink="/auth" routerLinkActive="active">Auth</a>
+    </li>
+    <li *ngIf="auth">
+      <a routerLink="/account" routerLinkActive="active">Account</a>
+    </li>
+    <li *ngIf="auth">
+      <a routerLink="/user-likes" routerLinkActive="active">Likes</a>
+    </li>
+  </ul>
+  <h1>Simple Library</h1>
+  <ul class="large-menu">
+    <li>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Main page</a>
+    </li>
+    <!--<li>-->
+      <!--<a routerLink="/edit-book" routerLinkActive="active">Edit book</a>-->
+    <!--</li>-->
     <li>
       <a routerLink="/find-book" routerLinkActive="active">Find book</a>
     </li>
     <li>
       <a routerLink="/show-books" routerLinkActive="active">Show books</a>
-    </li>
-    <li>
-      <a routerLink="/add-user" routerLinkActive="active">Registration</a>
-    </li>
-    <li>
-      <a routerLink="/auth" routerLinkActive="active">Auth</a>
-    </li>
-    <li>
-      <a routerLink="/account" routerLinkActive="active">Account</a>
     </li>
   </ul>
   <router-outlet></router-outlet>

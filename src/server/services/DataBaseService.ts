@@ -67,4 +67,14 @@ export class DataBaseService {
       .findOne({nm: name}));
   };
 
+  public static updateBookLikes = (id, likes) => {
+    return DataBaseService.connect((db) => db.collection(config.db.collections.books)
+      .updateOne({_id: ObjectID(id)}, {$set: {lks: likes}}));
+  };
+
+  public static updateUserLikes = (id, likes) => {
+    return DataBaseService.connect((db) => db.collection(config.db.collections.users)
+      .updateOne({_id: ObjectID(id)}, {$set: {lks: likes}}));
+  };
+
 }

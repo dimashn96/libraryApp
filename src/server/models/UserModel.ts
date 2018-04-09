@@ -8,6 +8,7 @@ export class User {
   public lastName: string;
   public passH: string;
   public role: string;
+  public likes: [string];
 
   constructor(user?: any, fromRawData?: boolean) {
     if (!user) {
@@ -20,12 +21,14 @@ export class User {
         this.lastName = user.lstNm;
         this.passH = user.pssH;
         this.role = user.rl;
+        this.likes = user.lks;
       } else {
         this.name = user.name;
         this.firstName = user.firstName;
         this.lastName = user.lastName;
         this.passH = user.passH;
         this.role = user.role;
+        this.likes = user.likes;
       }
     }
   }
@@ -37,6 +40,7 @@ export class User {
     rawUser.lstNm = this.lastName;
     rawUser.pssH = this.passH;
     rawUser.rl = this.role;
+    rawUser.lks = this.likes;
     return rawUser;
   }
 

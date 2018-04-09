@@ -3,6 +3,7 @@ import {HttpService} from '../../services/http.service';
 import {Response} from '../../models/ResponseModel';
 import {User} from '../../models/UserModel';
 import {Router} from '@angular/router';
+import {AppComponent} from '../app.component';
 
 @Component({
   selector: 'app-account',
@@ -14,7 +15,7 @@ export class AccountComponent implements OnInit {
   user: User;
   token = window.localStorage.token;
 
-  constructor(private httpService: HttpService, private router: Router) {}
+  constructor(private httpService: HttpService, private router: Router, private mainComp: AppComponent) {}
 
   ngOnInit() {
     if (this.token && typeof this.token === 'string') {
@@ -33,6 +34,7 @@ export class AccountComponent implements OnInit {
   exit() {
     if (this.token && typeof this.token === 'string') {
       localStorage.removeItem('token');
+      this.mainComp.checkAuth();
       this.router.navigate(['']);
     }
   }

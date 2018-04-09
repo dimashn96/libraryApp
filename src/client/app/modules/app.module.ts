@@ -16,6 +16,7 @@ import {AuthComponent} from '../components/auth/auth.component';
 import {AccountComponent} from '../components/account/account.component';
 import {EditBookComponent} from '../components/edit-book/edit-book.component';
 import {FindBookComponent} from '../components/find-book/find-book.component';
+import {UserLikesComponent} from '../components/user-likes/user-likes.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
   {path: 'account', component: AccountComponent},
   {path: 'edit-book/:book-id', component: EditBookComponent},
   {path: 'find-book', component: FindBookComponent},
+  {path: 'user-likes', component: UserLikesComponent},
   {path: '**', component: NotFoundComponent}
 ];
 
@@ -40,7 +42,8 @@ const appRoutes: Routes = [
     AuthComponent,
     AccountComponent,
     EditBookComponent,
-    FindBookComponent
+    FindBookComponent,
+    UserLikesComponent
   ],
   imports: [
     BrowserModule,

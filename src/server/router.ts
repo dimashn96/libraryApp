@@ -122,7 +122,7 @@ router.post('/user', (req, res) => {
             return sendError(res, err, 401, 'Invalid password');
           }
           jwt.encode(config.auth.secret, {name: user.name}, function (err, token) {
-            sendResponse(res, undefined, undefined, token);
+            sendResponse(res, undefined, undefined, {token: token, admin: user.role === 'admin'});
           });
         });
       }
@@ -149,6 +149,28 @@ router.get('/user', (req, res) => {
       }
     });
   }
+});
+
+// Update book likes
+router.post('/book-likes', (req, res) => {
+  DataBaseService.updateBookLikes(req.body.id, req.body.likes)
+    .then((result) => {
+      sendResponse(res);
+    })
+    .catch((err) => {
+      sendError(res, err);
+    });
+});
+
+// Update user likes
+router.post('/user-likes', (req, res) => {
+  DataBaseService.updateUserLikes(req.body.id, req.body.likes)
+    .then((result) => {
+      sendResponse(res);
+    })
+    .catch((err) => {
+      sendError(res, err);
+    });
 });
 
 module.exports = router;
